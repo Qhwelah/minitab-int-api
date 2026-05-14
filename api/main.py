@@ -1,9 +1,5 @@
 from fastapi import FastAPI
-# from pydantic import BaseModel
 from typing import List
-
-# class NumberList(BaseModel):
-#     numbers: List[int]
 
 app = FastAPI()
 
