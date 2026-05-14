@@ -3,11 +3,13 @@ Author: Joseph Cooper \
 A numerical processing API program for the Minitab coding interview
 
 ## Usage
-1. Start the docker container using the startup script.
+1. Set environment variable `PORT` to some positive integer to use as your port number.
+2. Run `bash startup.sh` to start up the docker container.
     - Uses the commands described in **Docker Container Management**
-2. Go to http://localhost:80/docs in your browser to access the project swagger page and make sample api requests.
-3. Use the main POST api endpoints for `mean` and `stddev` with lists of numbers provided to receive the desired results.
-4. Run the shutdown script to remove and delete the container.
+3. Go to `http://localhost:[YOUR-PORT-NUMBER]/docs` in your browser to access the project swagger page and make sample api requests.
+4. Use the main POST api endpoints for `mean` and `stddev` with lists of numbers provided to receive the desired results.
+    - Can also make api requests directly to `http://localhost:[YOUR-PORT-NUMBER]/mean` or `/stddev` instead of via swagger page if desired.
+5. Run `bash shutdown.sh` to stop and delete the container.
 
 ## Docker Container Management
 ### Startup
