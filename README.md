@@ -4,25 +4,26 @@ An numerical processing API program for the Minitab coding interview
 ## Docker Container Management
 ### Startup
 - First, build the image
-    - Tag it with some image name with `-t`
+    - Use `docker build -t <image-tag> <path-to-build-context>` 
+    - Tag image with some name with `-t` flag
         - For example, `-t minitab-api` tags the image with the name `minitab-api`
-    - Run: `docker build -t minitab-api .`
+    - ex. `docker build -t minitab-api .`
 - Once built, run the container
-    - This used the `docker run` header
-    - Make sure to match the **image name** you used above, in this case `minitab-api`
-    - You can also give the running container a **container name**, ex `api-app`
-    - Ports:
-        - `-d <external-port-num>:<internal-port-num>`
-        - ex. `-d 8080:80` maps external port 8080 to internal port 80
-    - Run `docker run --name api-app minitab-api`
+    - Use `docker run --name <container-name> <image-name>`
+        - Make sure to match the **image name** you used above, in this case `minitab-api`
+        - Can give the running container a **container name** with the flag `--name <container-name>`, ex `api-app`
+        - Port allocations:
+            - uses the tag `-d <external-port-num>:<internal-port-num>`
+            - ex. `-d 8080:80` maps external port 8080 to internal port 80
+    - ex. `docker run --name api-app minitab-api`
 
 ### Interfacing
 - To see all active containers, use `docker ps`
 - To see all containers (active or not) use `docker ps -a`
 - After startup, you can enter the container
-    - This uses the `docker exec` command
+    - Use `docker exec -it <container-name> <command-for-in-container>`
     - Match the **container name** from the `run` command
-    - Ex. `docker exec -it api-app /bin/bash`
+    - ex. `docker exec -it api-app /bin/bash`
 - To exit a container, simply use `exit`
 
 ### Shutdown
