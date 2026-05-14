@@ -9,13 +9,14 @@ An numerical processing API program for the Minitab coding interview
         - For example, `-t minitab-api` tags the image with the name `minitab-api`
     - ex. `docker build -t minitab-api .`
 - Once built, run the container
-    - Use `docker run --name <container-name> <image-name>`
+    - Use `docker run --name <container-name> [other-tags] <image-name>`
         - Make sure to match the **image name** you used above, in this case `minitab-api`
         - Can give the running container a **container name** with the flag `--name <container-name>`, ex `api-app`
         - Port allocations:
-            - uses the tag `-d <external-port-num>:<internal-port-num>`
+            - uses the tag `-p <external-port-num>:<internal-port-num>`
             - ex. `-d 8080:80` maps external port 8080 to internal port 80
-    - ex. `docker run --name api-app minitab-api`
+        - Use `-d` tag to run in background
+    - ex. `docker run --name api-app -p 80:80 -d minitab-api`
 
 ### Interfacing
 - To see all active containers, use `docker ps`
@@ -37,3 +38,11 @@ An numerical processing API program for the Minitab coding interview
     - First, stop the container.
     - Then use `docker rm <container-name>`
     - ex. `docker rm api-app`
+
+## Hosts
+- Note that host `127.0.0.1` is localhost, but only for THAT container
+    - This is not forwarded to other spaces.
+- But host `0.0.0.0` is localhost that is allowed to be forwarded to other spaces.
+    - So host `0.0.0.0` in container forwarded by docker to outer machine `0.0.0.0` actually receives a response. 
+- This also means that curling `http://127.0.0.1:80/` on the host machine will work if `0.0.0.0` is active in the container
+    - Since the containers localhost is forwarded to the host machine, since the host machine's localhost is NOT forwarded anywhere.
