@@ -1,5 +1,6 @@
 from fastapi import FastAPI
 from typing import List
+import numpy as np
 
 app = FastAPI()
 
@@ -16,3 +17,9 @@ def post_mean(list_num: List[int]):
     mean = sum(list_num) / len(list_num)
     mean = round(mean, 3)
     return {"mean": mean}
+
+@app.post("/stddev/")
+def post_stddev(list_num: List[int]):
+    stddev = np.std(list_num)
+    stddev = round(stddev, 3)
+    return {"stddev": stddev}
